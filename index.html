@@ -30,17 +30,7 @@
             
         }
 
-        async function buttonTweetsPressed(){
-            var studentnumber = document.getElementById('text2').value;
-            var name = document.getElementById('text3').value;
-            var comment = document.getElementById('text4').value;
-            
-            var sql1 = `insert into Comments (studentid, name, comment) values ("${studentnumber}", "${name}", "${comment}");`;
-            var objects1 = await osql.connect(sql1);
-
-            console.log(objects1);
-            document.getElementById('comment').innerHTML = comment;
-        }
+        
     </script>
 
 </head>
@@ -59,15 +49,7 @@
         <br>
         アドバイス：<p id="advice"></p>
     </div>
-    <hr>
-    学籍番号：<input id="text2" value="" type="textfield">
-    <br>
-    名前：<input id="text3" value="" type="textfield">
-    <br>
-    その他のアドバイス：<input id="text4" value="" type="textfield">
-    <button onclick="buttonTweetsPressed()">投稿</button>
-    <p id="comment"></p>
-    <hr>
+    
     <a href="error.html">エラー投稿</a>
     
     
