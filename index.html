@@ -27,19 +27,19 @@
             document.getElementById('sentence').innerHTML = sentence;
             document.getElementById('detail').innerHTML = detail;
             document.getElementById('advice').innerHTML = advice;
-            // if (objects.length <= 0) {
-            //     document.getElementById('result').innerHTML = 'ログイン失敗：ユーザが見つかりません';
-            //     return;
-            // }
-            // if (objects[0].password != password) {
-            //     document.getElementById('result').innerHTML = 'ログイン失敗：パスワードが違います';
-            //     return;
-            // }
+            
+        }
 
-            // sessionStorage.setItem('userid', objects[0].id);
-            // sessionStorage.setItem('username', objects[0].name);
+        async function buttonTweetsPressed(){
+            var studentnumber = document.getElementById('text2').value;
+            var name = document.getElementById('text3').value;
+            var comment = document.getElementById('text4').value;
+            
+            var sql1 = `insert into Comments (studentid, name, comment) values ("${studentnumber}", "${name}", "${comment}");`;
+            var objects1 = await osql.connect(sql1);
 
-            // location.href = 'usertop.html';
+            console.log(objects1);
+            document.getElementById('comment').innerHTML = comment;
         }
     </script>
 
@@ -53,12 +53,20 @@
         <hr>
     </div>
     <div id="answer">
-        ・エラー文：<p id="sentence"></p>
+        エラー文：<p id="sentence"></p>
         <br>
-        ・意味：<p id="detail"></p>
+        分類：<p id="detail"></p>
         <br>
-        ・提案：<p id="advice"></p>
+        アドバイス：<p id="advice"></p>
     </div>
+    <hr>
+    学籍番号：<input id="text2" value="" type="textfield">
+    <br>
+    名前：<input id="text3" value="" type="textfield">
+    <br>
+    その他のアドバイス：<input id="text4" value="" type="textfield">
+    <button onclick="buttonTweetsPressed()">投稿</button>
+    <p id="comment"></p>
     <hr>
     <a href="error.html">エラー投稿</a>
     

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/osql.js"></script>
+    <link rel="stylesheet" href="index.css">
+
+    <script>
+        osql.requireLogin();
+
+        async function buttonPressed() {
+            var errorname = document.getElementById('text1').value;
+    
+
+            var sql = `select * from Error where sentence="${errorname}";`;
+            var objects = await osql.connect(sql);
+
+            var sentence = objects[0].sentence;
+            var detail = objects[0].detail;
+            var advice = objects[0].advice;
+
+            console.log(objects);
+            document.getElementById('sentence').innerHTML = sentence;
+            document.getElementById('detail').innerHTML = detail;
+            document.getElementById('advice').innerHTML = advice;
+            // if (objects.length <= 0) {
+            //     document.getElementById('result').innerHTML = 'ログイン失敗：ユーザが見つかりません';
+            //     return;
+            // }
+            // if (objects[0].password != password) {
+            //     document.getElementById('result').innerHTML = 'ログイン失敗：パスワードが違います';
+            //     return;
+            // }
+
+            // sessionStorage.setItem('userid', objects[0].id);
+            // sessionStorage.setItem('username', objects[0].name);
+
+            // location.href = 'usertop.html';
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>エラー文を登録
+    </h1>
+    <div>
+        名前：<input id="text1" value="" type="textfield">
+        <hr>
+        <p id="comment">内容</p>
+        <input id="text2" value="" type="textfield" style="width: 800px; height: 500px;">
+        <hr>
+        <button onclick="buttonPressed()">登録</button>
+    </div>
+    
+    
+    
+    <!-- <p><a href="register.html">新規登録</a></p>
+    <hr>
+    <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p> -->
+</body>
+
+</html>
