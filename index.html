@@ -7,6 +7,7 @@
 
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
+    <link rel="stylesheet" href="index.css">
 
     <script>
         osql.requireLogin();
@@ -23,7 +24,9 @@
             var advice = objects[0].advice;
 
             console.log(objects);
-            document.getElementById('result').innerHTML = sentence + detail + advice;
+            document.getElementById('sentence').innerHTML = sentence;
+            document.getElementById('detail').innerHTML = detail;
+            document.getElementById('advice').innerHTML = advice;
             // if (objects.length <= 0) {
             //     document.getElementById('result').innerHTML = 'ログイン失敗：ユーザが見つかりません';
             //     return;
@@ -48,8 +51,15 @@
         <input id="text1" value="" type="textfield">
         <button onclick="buttonPressed()">検索</button>
         <hr>
-        <p id="result"></p>
     </div>
+    <div id="answer">
+        ・エラー文：<p id="sentence"></p>
+        <br>
+        ・意味：<p id="detail"></p>
+        <br>
+        ・提案：<p id="advice"></p>
+    </div>
+    
     
     <!-- <p><a href="register.html">新規登録</a></p>
     <hr>
