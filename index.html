@@ -12,24 +12,31 @@
         osql.requireLogin();
 
         async function buttonPressed() {
-            var userid = document.getElementById('tf1').value;
-            var password = document.getElementById('tf2').value;
+            var errorname = document.getElementById('text1').value;
+    
 
-            var sql = `select * from Users where id="${userid}";`;
+            var sql = `select * from Error where sentence="${errorname}";`;
             var objects = await osql.connect(sql);
-            if (objects.length <= 0) {
-                document.getElementById('result').innerHTML = 'ログイン失敗：ユーザが見つかりません';
-                return;
-            }
-            if (objects[0].password != password) {
-                document.getElementById('result').innerHTML = 'ログイン失敗：パスワードが違います';
-                return;
-            }
 
-            sessionStorage.setItem('userid', objects[0].id);
-            sessionStorage.setItem('username', objects[0].name);
+            var sentence = objects[0].sentence;
+            var detail = objects[0].detail;
+            var advice = objects[0].advice;
 
-            location.href = 'usertop.html';
+            console.log(objects);
+            document.getElementById('result').innerHTML = sentence + detail + advice;
+            // if (objects.length <= 0) {
+            //     document.getElementById('result').innerHTML = 'ログイン失敗：ユーザが見つかりません';
+            //     return;
+            // }
+            // if (objects[0].password != password) {
+            //     document.getElementById('result').innerHTML = 'ログイン失敗：パスワードが違います';
+            //     return;
+            // }
+
+            // sessionStorage.setItem('userid', objects[0].id);
+            // sessionStorage.setItem('username', objects[0].name);
+
+            // location.href = 'usertop.html';
         }
     </script>
 
@@ -38,18 +45,15 @@
 <body>
     <h1>エラー文検索</h1>
     <div>
-        <h2>ログイン</h2>
-        userid:<input id="tf1" value="" type="textfield">
-        <br>
-        password:<input id="tf2" value="" type="password">
-        <br>
-        <button onclick="buttonPressed()">ログイン</button>
+        <input id="text1" value="" type="textfield">
+        <button onclick="buttonPressed()">検索</button>
+        <hr>
         <p id="result"></p>
     </div>
+    
+    <!-- <p><a href="register.html">新規登録</a></p>
     <hr>
-    <p><a href="register.html">新規登録</a></p>
-    <hr>
-    <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p>
+    <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p> -->
 </body>
 
 </html>
