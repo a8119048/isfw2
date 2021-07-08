@@ -14,34 +14,32 @@
 
         async function buttonPressed() {
             var errorname = document.getElementById('text1').value;
-    
 
-            var sql = `select * from Error where sentence="${errorname}";`;
+            var sql = `select * from Errors where sentence="${errorname}";`;
             var objects = await osql.connect(sql);
+            console.log(objects);
 
             var sentence = objects[0].sentence;
             var detail = objects[0].detail;
             var advice = objects[0].advice;
 
-            console.log(objects);
+
             document.getElementById('sentence').innerHTML = sentence;
             document.getElementById('detail').innerHTML = detail;
             document.getElementById('advice').innerHTML = advice;
-            
+
         }
 
-        
+
     </script>
 
 </head>
 
 <body>
     <h1>エラー文検索</h1>
-    <div>
-        <input id="text1" value="" type="textfield">
-        <button onclick="buttonPressed()">検索</button>
-        <hr>
-    </div>
+    <input id="text1" value="" type="textfield">
+    <button onclick="buttonPressed()">検索</button>
+    <hr>
     <div id="answer">
         エラー文：<p id="sentence"></p>
         <br>
@@ -49,10 +47,10 @@
         <br>
         アドバイス：<p id="advice"></p>
     </div>
-    
+
     <a href="error.html">エラー投稿</a>
-    
-    
+
+
     <!-- <p><a href="register.html">新規登録</a></p>
     <hr>
     <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p> -->
