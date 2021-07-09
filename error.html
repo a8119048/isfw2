@@ -15,8 +15,8 @@
         osql.requireLogin();
 
         async function buttonPressed() {
-            var error_main = document.getElementById('text1').value;
-            var error_solution = document.getElementById('textarea').value;
+            var error_main = document.getElementById('textarea1').value;
+            var error_solution = document.getElementById('textarea2').value;
             var sql = `insert into Errors (error_main, error_solution) values ("${error_main}", "${error_solution}");`;
             var objects = await osql.connect(sql);
 
@@ -27,10 +27,9 @@
 </head>
 
 <body>
-    <h1>エラー文を登録
-    </h1>
+    <h1>エラー文を登録</h1>
     <div>
-        エラー文：<input id="text1" value="" type="textfield">
+        エラー文<textarea id="textarea1" cols="100" rows="2" placeholder="エラー文を入力してください" maxlength="500"></textarea>
         <br>
         <!-- 名前：<input id="text2" value="" type="textfield"> -->
         <hr>
@@ -46,7 +45,7 @@
             <textarea id="textarea" name="test" cols="90" rows="20" placeholder="500文字以内でお願いします。"></textarea>
             <input type="submit" id="btn" value="登録">
         </form> -->
-        <textarea id="textarea" cols="90" rows="20" placeholder="500文字以内でお願いします" maxlength="500"></textarea>
+        <textarea id="textarea2" cols="90" rows="20" placeholder="500文字以内でお願いします" maxlength="500"></textarea>
         <!-- <input id="text2" value="" type="textfield" style="width: 500px; height: 300px;"> -->
         <hr>
         <button onclick="buttonPressed()">登録</button>
