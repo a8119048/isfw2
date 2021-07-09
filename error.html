@@ -15,35 +15,12 @@
         osql.requireLogin();
 
         async function buttonPressed() {
-            var student_number = document.getElementById('text1').value;
-            var error_category = document.getElementById('input-repeatnum').value;
-            var error_main = document.getElementById('textarea').value;
-    
-
-            var sql = `select * from Error where sentence="${errorname}";`;
+            var error_main = document.getElementById('text1').value;
+            var error_solution = document.getElementById('textarea').value;
+            var sql = `insert into Errors (error_main, error_solution) values ("${error_main}", "${error_solution}");`;
             var objects = await osql.connect(sql);
 
-            var sentence = objects[0].sentence;
-            var detail = objects[0].detail;
-            var advice = objects[0].advice;
-
-            console.log(objects);
-            document.getElementById('sentence').innerHTML = sentence;
-            document.getElementById('detail').innerHTML = detail;
-            document.getElementById('advice').innerHTML = advice;
-            // if (objects.length <= 0) {
-            //     document.getElementById('result').innerHTML = 'ログイン失敗：ユーザが見つかりません';
-            //     return;
-            // }
-            // if (objects[0].password != password) {
-            //     document.getElementById('result').innerHTML = 'ログイン失敗：パスワードが違います';
-            //     return;
-            // }
-
-            // sessionStorage.setItem('userid', objects[0].id);
-            // sessionStorage.setItem('username', objects[0].name);
-
-            // location.href = 'usertop.html';
+            window.alert('登録完了しました。');
         }
     </script>
 
@@ -53,18 +30,18 @@
     <h1>エラー文を登録
     </h1>
     <div>
-        学生番号：<input id="text1" value="" type="textfield">
+        エラー文：<input id="text1" value="" type="textfield">
         <br>
         <!-- 名前：<input id="text2" value="" type="textfield"> -->
         <hr>
-        エラー文の分類：<select id="input-repeatnum">
+        <!-- エラー文の分類：<select id="input-repeatnum">
             <option value="001">選択してください</option>
             <option value="002">スペルミス</option>
             <option value="003">定義なし</option>
             <option value="004">入力ミス</option>
             <option value="005">その他</option>
-        </select>
-        <p id="comment">アドバイス</p>
+        </select> -->
+        <p id="comment">解決策</p>
         <!-- <form name="form">
             <textarea id="textarea" name="test" cols="90" rows="20" placeholder="500文字以内でお願いします。"></textarea>
             <input type="submit" id="btn" value="登録">
