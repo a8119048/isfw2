@@ -9,7 +9,15 @@
     <script type="text/javascript" src="lib/osql.js"></script>
 
     <script>
-        osql.requireLogin();
+        $().ready(function () {
+                init();
+            });
+
+        function init() {
+            var userid = sessionStorage.getItem('userid')
+            var username = sessionStorage.getItem('username');
+            document.getElementById('welcome').innerHTML = 'ようこそ' + username + 'さん';
+        }
     </script>
 
 </head>
