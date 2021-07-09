@@ -15,13 +15,13 @@
         async function buttonPressed() {
             var errorname = document.getElementById('text1').value;
 
-            var sql = `select * from Errors where sentence="${errorname}";`;
+            var sql = `select * from Errors where error_main="${errorname}";`;
             var objects = await osql.connect(sql);
             console.log(objects);
 
-            var sentence = objects[0].sentence;
-            var detail = objects[0].detail;
-            var advice = objects[0].advice;
+            var sentence = objects[0].error_main;
+            // var detail = objects[0].detail;
+            var advice = objects[0].error_solution;
 
 
             document.getElementById('sentence').innerHTML = sentence;
