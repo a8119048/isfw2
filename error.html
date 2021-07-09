@@ -4,16 +4,20 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
+    <!-- <script type="text/javascript" src="error.js"></script> -->
     <link rel="stylesheet" href="index.css">
 
     <script>
         osql.requireLogin();
 
         async function buttonPressed() {
-            var errorname = document.getElementById('text1').value;
+            var student_number = document.getElementById('text1').value;
+            var error_category = document.getElementById('input-repeatnum').value;
+            var error_main = document.getElementById('textarea').value;
     
 
             var sql = `select * from Error where sentence="${errorname}";`;
@@ -49,10 +53,24 @@
     <h1>エラー文を登録
     </h1>
     <div>
-        名前：<input id="text1" value="" type="textfield">
+        学生番号：<input id="text1" value="" type="textfield">
+        <br>
+        <!-- 名前：<input id="text2" value="" type="textfield"> -->
         <hr>
-        <p id="comment">内容</p>
-        <input id="text2" value="" type="textfield" style="width: 800px; height: 500px;">
+        エラー文の分類：<select id="input-repeatnum">
+            <option value="001">選択してください</option>
+            <option value="002">スペルミス</option>
+            <option value="003">定義なし</option>
+            <option value="004">入力ミス</option>
+            <option value="005">その他</option>
+        </select>
+        <p id="comment">アドバイス</p>
+        <!-- <form name="form">
+            <textarea id="textarea" name="test" cols="90" rows="20" placeholder="500文字以内でお願いします。"></textarea>
+            <input type="submit" id="btn" value="登録">
+        </form> -->
+        <textarea id="textarea" cols="90" rows="20" placeholder="500文字以内でお願いします" maxlength="500"></textarea>
+        <!-- <input id="text2" value="" type="textfield" style="width: 500px; height: 300px;"> -->
         <hr>
         <button onclick="buttonPressed()">登録</button>
     </div>
@@ -63,5 +81,6 @@
     <hr>
     <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p> -->
 </body>
+<!-- <script src="error.js"></script> -->
 
 </html>
