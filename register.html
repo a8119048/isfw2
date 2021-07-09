@@ -23,11 +23,12 @@
             var sql = `insert into Users (userid, password, username) values("${userid}", "${password}", "${username}");`;
             var objects = await osql.connect(sql);
             console.log(objects);
+
             if (objects.length <= 0) {
-                document.getElementById('result').innerHTML = 'not found';
+                document.getElementById('result').innerHTML = 'User情報を登録しました';　//OK
                 return;
             }
-            document.getElementById('result').innerHTML = 'OK';
+            document.getElementById('result').innerHTML = 'not found'; //OKS
         }
 
     </script>
