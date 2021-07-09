@@ -20,7 +20,7 @@
             var password = document.getElementById('tf2').value;
             var username = document.getElementById('tf3').value;
 
-            var sql = `insert into Users (studentid, password, name) values("${studentid}", "${password}", "${username}");`;
+            var sql = `insert into Users (studentid, password, username) values("${studentid}", "${password}", "${username}");`;
             var objects = await osql.connect(sql);
             console.log(objects);
             if (objects.length <= 0) {
