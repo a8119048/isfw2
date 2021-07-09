@@ -24,9 +24,9 @@
             var advice = objects[0].error_solution;
 
 
-            document.getElementById('sentence').innerHTML = sentence;
+            document.getElementById('sentence').innerHTML = 'エラー文：' + sentence;
             // document.getElementById('detail').innerHTML = detail;
-            document.getElementById('advice').innerHTML = advice;
+            document.getElementById('advice').innerHTML = '解決策：' + advice;
 
         }
 
@@ -41,9 +41,9 @@
     <button onclick="buttonPressed()">検索</button>
     <hr>
     <div id="answer">
-        エラー文：<p id="sentence"></p>
+        <p id="sentence"></p>
         <br>
-        解決策：<p id="advice"></p>
+        <p id="advice"></p>
     </div>
 
     <!-- <a href="error.html">エラー文投稿</a> -->
