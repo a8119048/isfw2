@@ -13,7 +13,7 @@
         osql.requireLogin();
 
         async function buttonPressed() {
-            var errorname = document.getElementById('text1').value;
+            var errorname = document.getElementById('textarea').value;
 
             var sql = `select * from Errors where error_main="${errorname}";`;
             var objects = await osql.connect(sql);
