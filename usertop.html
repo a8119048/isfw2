@@ -10,13 +10,14 @@
 
     <script>
         $().ready(function () {
-                init();
-            });
+            init();
+        });
 
         function init() {
             var userid = sessionStorage.getItem('userid')
             var username = sessionStorage.getItem('username');
             document.getElementById('welcome').innerHTML = 'ようこそ' + username + 'さん';
+            //document.getElementById('tf1').value = user.name;
         }
     </script>
 
