@@ -38,7 +38,8 @@
 
         
         async function execSelect() {
-            var sql = `select * from Saves order by time desc limit 20;`;
+            var userid = sessionStorage.getItem('userid');
+            var sql = `select * from Saves where studentid = "${userid}" order by time desc limit 20;`;
             var objects = await osql.connect(sql);
             console.log(objects);
             var html = '';
@@ -46,6 +47,7 @@
             for (var i = 0; i < objects.length; i++) {
                 html = html + '<tr>';
                 var object = objects[i];
+                // html = html + '<td>' + object.studentid + '</td>';
                 html = html + '<td>' + object.advice + '</td>';
                 html = html + '<td>' + object.time + '</td>';
                 // html = html + '<td>' + '<a href="update.html?userid=' + object.id + '">変更</a>' + '</td>';
