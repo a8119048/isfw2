@@ -24,9 +24,10 @@
         }
 
         async function buttonPressed() {
+            var userid = sessionStorage.getItem('userid');
             var error_main = document.getElementById('textarea1').value;
             var error_solution = document.getElementById('textarea2').value;
-            var sql = `insert into Errors (error_main, error_solution) values ("${error_main}", "${error_solution}");`;
+            var sql = `insert into Errors (error_main, error_solution) values ("${error_main}", "${error_solution}"); delete from Saves where studentid = "${userid}"`;
             var objects = await osql.connect(sql);
 
             window.alert('登録完了しました。');
