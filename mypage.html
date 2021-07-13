@@ -38,7 +38,7 @@
 
         
         async function execSelect() {
-            var sql = 'select * from Saves';
+            var sql = `select * from Saves order by time desc limit 20;`;
             var objects = await osql.connect(sql);
             console.log(objects);
             var html = '';
@@ -60,7 +60,7 @@
 </head>
 
 <body>
-    <h1>マイページ</h1>
+    <h1>保存画面</h1>
     <!-- <input id="text" type="textfield">さん -->
     <textarea id="textarea" cols="90" rows="2" placeholder="保存したいエラー文を入力してください" maxlength="500"></textarea>
     <button onclick="exeDo()">保存</button>
