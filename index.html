@@ -19,10 +19,14 @@
             var objects = await osql.connect(sql);
             console.log(objects);
 
+            if(objects.length == 0){
+                document.getElementById('sentence').innerHTML = '該当するエラー文が見つかりませんでした';
+                return;
+            }
+
             var sentence = objects[0].error_main;
             // var detail = objects[0].detail;
             var advice = objects[0].error_solution;
-
 
             document.getElementById('sentence').innerHTML = 'エラー文：' + sentence;
             // document.getElementById('detail').innerHTML = detail;
