@@ -14,6 +14,15 @@
     <script>
         osql.requireLogin();
 
+        $().ready(function () {
+            init();
+        });
+
+        function init() {
+            var advice = sessionStorage.getItem('advice');
+            document.getElementById('textarea1').innerHTML = advice;
+        }
+
         async function buttonPressed() {
             var error_main = document.getElementById('textarea1').value;
             var error_solution = document.getElementById('textarea2').value;
@@ -50,9 +59,9 @@
         <hr>
         <button onclick="buttonPressed()">登録</button>
     </div>
-    
-    
-    
+
+
+
     <!-- <p><a href="register.html">新規登録</a></p>
     <hr>
     <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p> -->

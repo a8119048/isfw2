@@ -27,6 +27,16 @@
             document.getElementById('textarea').value = '';
         }
 
+        async function buttonPressed() {
+            var userid = sessionStorage.getItem('userid');
+            var sql = `select * from Saves where studentid = "${userid}"`;
+            var objects = await osql.connect(sql);
+            console.log(objects);
+            sessionStorage.setItem('userid', objects[0].studentid);
+            sessionStorage.setItem('advice', objects[0].advice);
+            location.href = 'error.html';
+        }
+
         async function exeDelete(){
             var errorcode = document.getElementById('textarea').value;
             var ans = window.confirm(errorcode + 'を削除しました');
@@ -35,7 +45,6 @@
             var objects = await osql.connect(sql);
             console.log(objects);
         }
-
         
         async function execSelect() {
             var userid = sessionStorage.getItem('userid');
@@ -51,7 +60,8 @@
                 html = html + '<td>' + object.advice + '</td>';
                 html = html + '<td>' + object.time + '</td>';
                 // html = html + '<td>' + '<a href="update.html?userid=' + object.id + '">変更</a>' + '</td>';
-                html = html + '<td>' + `<button onclick = "exeDelete('${object.id}')">削除</button>` + '</td>';  
+                html = html + '<td>' + `<button onclick="buttonPressed('${object.id}')">登録</button>` + '</td>';
+                html = html + '<td>' + `<button onclick="exeDelete('${object.id}')">削除</button>` + '</td>';  
                 html = html + '</tr>';
             }
             html = html + '</table>';
