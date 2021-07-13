@@ -17,7 +17,7 @@
 
             var sql = `select * from Errors where error_main="${errorname}";`;
             var objects = await osql.connect(sql);
-            console.log(objects);
+            console.log(objects);　//同じのが2個出たときの表記の仕方を考える
 
             if(objects.length == 0){
                 document.getElementById('sentence').innerHTML = '該当するエラー文が見つかりませんでした';
