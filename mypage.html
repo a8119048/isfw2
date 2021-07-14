@@ -7,9 +7,10 @@
 
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
+    <link rel="stylesheet" href="mypage.css">
 
     <script>
-        function exeDo(){
+        function exeDo() {
             exeSave();
         }
 
@@ -17,7 +18,7 @@
             setInterval(execSelect, 2000);
         });
 
-        async function exeSave(){
+        async function exeSave() {
             var userid = sessionStorage.getItem('userid');
             var errorname = document.getElementById('textarea').value;
             var sql = `insert into Saves (studentid,advice) value ("${userid}", "${errorname}");`;
@@ -37,7 +38,7 @@
             location.href = 'error.html';
         }
 
-        async function exeDelete(){
+        async function exeDelete() {
             var errorcode = document.getElementById('textarea').value;
             var ans = window.confirm(errorcode + 'を削除しました');
             var userid = sessionStorage.getItem('userid');
@@ -45,7 +46,7 @@
             var objects = await osql.connect(sql);
             console.log(objects);
         }
-        
+
         async function execSelect() {
             var userid = sessionStorage.getItem('userid');
             var sql = `select * from Saves where studentid = "${userid}" order by time desc limit 20;`;
@@ -61,7 +62,7 @@
                 html = html + '<td>' + object.time + '</td>';
                 // html = html + '<td>' + '<a href="update.html?userid=' + object.id + '">変更</a>' + '</td>';
                 html = html + '<td>' + `<button onclick="buttonPressed('${object.id}')">登録</button>` + '</td>';
-                html = html + '<td>' + `<button onclick="exeDelete('${object.id}')">削除</button>` + '</td>';  
+                html = html + '<td>' + `<button onclick="exeDelete('${object.id}')">削除</button>` + '</td>';
                 html = html + '</tr>';
             }
             html = html + '</table>';
@@ -72,16 +73,16 @@
 </head>
 
 <body>
-    <h1>保存画面</h1>
+    <h1 style="background-color:lightgreen">保存画面</h1>
     <!-- <input id="text" type="textfield">さん -->
     <textarea id="textarea" cols="90" rows="2" placeholder="保存したいエラー文を入力してください" maxlength="500"></textarea>
     <br>
     <!-- <label><input type="radio" name="solve" value="解決した">解決した</label>
     <label><input type="radio" name="solve" value="解決していない">解決していない</label> -->
     <br>
-    <button onclick="exeDo()">保存</button>
+    <button onclick="exeDo()" style="background-color:lime">保存</button>
     <hr>
-    <p id="result"></p>
+    <p id=" result"></p>
 </body>
 
 </html>
