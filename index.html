@@ -19,7 +19,7 @@
             var objects = await osql.connect(sql);
             console.log(objects);　//同じのが2個出たときの表記の仕方を考える
 
-            if(objects.length == 0){
+            if (objects.length == 0) {
                 document.getElementById('sentence').innerHTML = '該当するエラー文が見つかりませんでした';
                 return;
             }
@@ -40,10 +40,10 @@
 </head>
 
 <body>
-    <h1>エラー文検索</h1>
+    <h1 style="background-color:lightskyblue">エラー文検索</h1>
     <textarea id="textarea" cols="100" rows="2" placeholder="エラー文を入力してください" maxlength="500"></textarea>
     <!-- <input id="text1" value="エラー文を入力してください" type="textfield"> -->
-    <button onclick="buttonPressed()">検索</button>
+    <button onclick="buttonPressed()" style="background-color:dodgerblue">検索</button>
     <hr>
     <div id="answer">
         <p id="sentence"></p>
