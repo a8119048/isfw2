@@ -7,6 +7,7 @@
 
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
+    <link rel="stylesheet" href="login.css">
 
     <script>
         async function buttonPressed() {
@@ -35,18 +36,21 @@
 </head>
 
 <body>
-    <h1>エラー検索　ログイン画面</h1>
-    <div>
-        <h2>ログイン</h2>
+    <h1 style="background-color:gold"><SPAN style="margin-left:30px"></SPAN>
+        エラー検索　ログイン画面</h1>
+    <div style="margin-left:30px">
+
+        <h2> ログイン</h2>
         userid:<input id="tf1" value="" type="textfield">
         <br>
         password:<input id="tf2" value="" type="password">
         <br>
-        <button onclick="buttonPressed()">ログイン</button>
+        <br>
+        <button onclick="buttonPressed()" style="background-color: aquamarine">ログイン</button>
         <p id="result"></p>
     </div>
     <hr>
-    <p><a href="register.html">新規登録</a></p>
+    <p style="margin-left:30px"><a href="register.html">新規登録</a></p>
     <hr>
     <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p>
 </body>
