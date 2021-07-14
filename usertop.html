@@ -17,7 +17,7 @@
         function init() {
             var userid = sessionStorage.getItem('userid')
             var username = sessionStorage.getItem('username');
-            document.getElementById('welcome').innerHTML = 'ようこそ' + username + 'さん';
+            document.getElementById('welcome').innerHTML = 'ようこそ、' + username + 'さん';
             //document.getElementById('tf1').value = user.name;
         }
     </script>
@@ -26,9 +26,11 @@
 
 <body>
     <h1 style="background-color:gold">ユーザトップ</h1>
-    <p id="welcome"></p>
+    <br>
+    <p1 id="welcome" span style="font-size:160%;"></p1>
     <hr>
-    <p><a href="mypage.html">マイページ(エラー文保存画面)</a></p>
+    <br>
+    <p><a href="mypage.html" paddring right="50px">マイページ(エラー文保存画面)</a></p>
     <hr>
     <p><a href="index.html">エラー文検索</a></p>
     <p><a href="error.html">エラー文登録</a></p>
