@@ -10,6 +10,8 @@
     <script type="text/javascript" src="lib/osql.js"></script>
     <!-- <script type="text/javascript" src="error.js"></script> -->
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="error.css">
+
 
     <script>
         osql.requireLogin();
@@ -37,9 +39,9 @@
 </head>
 
 <body>
-    <h1>登録画面</h1>
+    <h1 style="background-color:lightsalmon">登録画面</h1>
     <div>
-        エラー文<textarea id="textarea1" cols="100" rows="2" placeholder="エラー文を入力してください" maxlength="500"></textarea>
+        エラー文　<textarea id=" textarea1" cols="100" rows="2" placeholder="エラー文を入力してください" maxlength="500"></textarea>
         <br>
         <!-- 名前：<input id="text2" value="" type="textfield"> -->
         <hr>
@@ -58,7 +60,7 @@
         <textarea id="textarea2" cols="90" rows="20" placeholder="500文字以内でお願いします" maxlength="500"></textarea>
         <!-- <input id="text2" value="" type="textfield" style="width: 500px; height: 300px;"> -->
         <hr>
-        <button onclick="buttonPressed()">登録</button>
+        <button onclick="buttonPressed()" style="background-color:salmon">登録</button>
     </div>
 
 
