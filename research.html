@@ -17,31 +17,32 @@
 
             var sql = `select * from Errors where error_main like "%${errorname}%";`;
             var objects = await osql.connect(sql);
-            console.log(objects);　//同じのが2個出たときの表記の仕方を考える
+            console.log(objects);
+            var html = '';
+            html = html + '<table border="1">';
 
             if (objects.length == 0) {
                 document.getElementById('sentence').innerHTML = '該当するエラー文が見つかりませんでした';
                 return;
             }
-
-            var html ='';
-
-            for(var i = 0; i < objects.length; i++){
-                var sentence = objects[i].error_main;
-                //document.getElementById('sentence').innerHTML = 'エラー文：' + sentence;
-                html = html + '<p>' + sentence + '</p>';
-                var advice = objects[i].error_solution;
-                html = html + '<p>' + advice + '</p>';
-                //document.getElementById('advice').innerHTML = '解決策：' + advice;
+                
+            for (var i = 0; i < objects.length; i++) {
+                html = html + '<tr>';
+                var object = objects[i];
+                html = html + '<td>' + object.error_main + '</td>';
+                html = html + '<td>' + object.error_solution + '</td>';
+                html = html + '</tr>';
             }
-            document.getElementById('sentence').innerHTML = html;
-            // var sentence = objects[0].error_main;
-            // // var detail = objects[0].detail;
-            // var advice = objects[0].error_solution;
+            html = html + '</table>';
 
-            // document.getElementById('sentence').innerHTML = 'エラー文：' + sentence;
-            // // document.getElementById('detail').innerHTML = detail;
-            // document.getElementById('advice').innerHTML = '解決策：' + advice;
+                // var sentence = objects[i].error_main;
+                // //document.getElementById('sentence').innerHTML = 'エラー文：' + sentence;
+                // html = html + '<p>' + sentence + '</p>'; //pタグで囲むことを繰り返すことができる
+                // var advice = objects[i].error_solution;
+                // html = html + '<p>' + advice + '</p>';
+                //document.getElementById('advice').innerHTML = '解決策：' + advice;
+            
+            document.getElementById('sentence').innerHTML = html;
 
         }
 
@@ -58,11 +59,8 @@
     <!-- <input id="text1" value="エラー文を入力してください" type="textfield"> -->
     <button onclick="buttonPressed()" style="background-color:dodgerblue">検索</button>
     <hr>
-    <div id="answer" style="margin-left:30px">
-        <div id="sentence"></div>
-        <br>
-        <p id="advice"></p>
-    </div>
+    <p id="sentence"></p>
+    
 
     <!-- <a href="error.html">エラー文投稿</a> -->
 
