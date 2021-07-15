@@ -33,6 +33,8 @@
             var objects = await osql.connect(sql);
 
             window.alert('登録完了しました。');
+            document.getElementById('textarea1').innerHTML = '';
+            document.getElementById('textarea2').innerHTML = '';
         }
     </script>
 
