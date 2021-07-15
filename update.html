@@ -17,16 +17,17 @@
 
         async function execSelect() {
             var userid = osql.getParam('userid');
-            var sql = `select * from Users where id="${userid}";`;
+            var sql = `select * from Users where userid="${userid}";`;
+            console.log(sql);
             var objects = await osql.connect(sql);
             if (objects.length <= 0) {
                 document.getElementById('result').innerHTML = 'not found';
                 return;
             }
             var user = objects[0];
-            document.getElementById('tf1').value = user.id;
+            document.getElementById('tf1').value = user.userid;
             document.getElementById('tf2').value = user.password;
-            document.getElementById('tf3').value = user.name;
+            document.getElementById('tf3').value = user.username;
         }
 
         function button2Pressed() {
