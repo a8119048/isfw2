@@ -24,12 +24,17 @@
                 return;
             }
 
+            var html ='';
+
             for(var i = 0; i < objects.length; i++){
                 var sentence = objects[i].error_main;
-                document.getElementById('sentence').innerHTML = 'エラー文：' + sentence;
+                //document.getElementById('sentence').innerHTML = 'エラー文：' + sentence;
+                html = html + '<p>' + sentence + '</p>';
                 var advice = objects[i].error_solution;
-                document.getElementById('advice').innerHTML = '解決策：' + advice;
+                html = html + '<p>' + advice + '</p>';
+                //document.getElementById('advice').innerHTML = '解決策：' + advice;
             }
+            document.getElementById('sentence').innerHTML = html;
             // var sentence = objects[0].error_main;
             // // var detail = objects[0].detail;
             // var advice = objects[0].error_solution;
@@ -54,7 +59,7 @@
     <button onclick="buttonPressed()" style="background-color:dodgerblue">検索</button>
     <hr>
     <div id="answer" style="margin-left:30px">
-        <p id="sentence"></p>
+        <div id="sentence"></div>
         <br>
         <p id="advice"></p>
     </div>
