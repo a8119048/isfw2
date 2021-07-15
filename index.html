@@ -7,58 +7,56 @@
 
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript" src="lib/osql.js"></script>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="login.css">
 
     <script>
-        osql.requireLogin();
-
         async function buttonPressed() {
-            var errorname = document.getElementById('textarea').value;
+            var userid = document.getElementById('tf1').value;
+            var password = document.getElementById('tf2').value;
 
-            var sql = `select * from Errors where error_main="${errorname}";`;
+            var sql = `select * from Users where userid="${userid}";`;
             var objects = await osql.connect(sql);
-            console.log(objects);　//同じのが2個出たときの表記の仕方を考える
-
-            if (objects.length == 0) {
-                document.getElementById('sentence').innerHTML = '該当するエラー文が見つかりませんでした';
+            if (objects.length <= 0) {
+                document.getElementById('result').innerHTML = 'ログイン失敗：ユーザが見つかりません';
+                return;
+            }
+            if (objects[0].password != password) {
+                document.getElementById('result').innerHTML = 'ログイン失敗：パスワードが違います';
                 return;
             }
 
-            var sentence = objects[0].error_main;
-            // var detail = objects[0].detail;
-            var advice = objects[0].error_solution;
+            sessionStorage.setItem('userid', objects[0].userid);
+            sessionStorage.setItem('username', objects[0].username);
 
-            document.getElementById('sentence').innerHTML = 'エラー文：' + sentence;
-            // document.getElementById('detail').innerHTML = detail;
-            document.getElementById('advice').innerHTML = '解決策：' + advice;
-
+            location.href = 'usertop.html';
+            //document.getElementById('tf1').value = user.name;
         }
-
-
     </script>
 
 </head>
 
 <body>
-    <h1 style="background-color:lightskyblue">エラー文検索</h1>
-    <br>
-    <textarea id="textarea" cols="100" rows="2" placeholder="エラー文を入力してください" maxlength="500"
-        style="margin-left:30px"></textarea>
-    <!-- <input id="text1" value="エラー文を入力してください" type="textfield"> -->
-    <button onclick="buttonPressed()" style="background-color:dodgerblue">検索</button>
-    <hr>
-    <div id="answer" style="margin-left:30px">
-        <p id="sentence"></p>
+    <h1 style="background-color:gold"><SPAN style="margin-left:30px"></SPAN>
+        エラー検索　ログイン画面</h1>
+    <div style="margin-left:50px">
+
+        <h2> ログイン</h2>
+        <font size="4">
+            userid : <input id="tf1" value="" type="textfield">
+        </font>
         <br>
-        <p id="advice"></p>
+        <font size="4">
+            password : <input id="tf2" value="" type="password">
+        </font>
+        <br>
+        <br>
+        <button onclick="buttonPressed()" style="background-color: aquamarine">ログイン</button>
+        <p id="result"></p>
     </div>
-
-    <!-- <a href="error.html">エラー文投稿</a> -->
-
-
-    <!-- <p><a href="register.html">新規登録</a></p>
     <hr>
-    <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p> -->
+    <p style="margin-left:30px"><a href="register.html">新規登録</a></p>
+    <hr>
+    <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p>
 </body>
 
 </html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/osql.js"></script>
+    <link rel="stylesheet" href="index.css">
+
+    <script>
+        osql.requireLogin();
+
+        async function buttonPressed() {
+            var errorname = document.getElementById('textarea').value;
+
+            var sql = `select * from Errors where error_main="${errorname}";`;
+            var objects = await osql.connect(sql);
+            console.log(objects);　//同じのが2個出たときの表記の仕方を考える
+
+            if (objects.length == 0) {
+                document.getElementById('sentence').innerHTML = '該当するエラー文が見つかりませんでした';
+                return;
+            }
+
+            var sentence = objects[0].error_main;
+            // var detail = objects[0].detail;
+            var advice = objects[0].error_solution;
+
+            document.getElementById('sentence').innerHTML = 'エラー文：' + sentence;
+            // document.getElementById('detail').innerHTML = detail;
+            document.getElementById('advice').innerHTML = '解決策：' + advice;
+
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+    <h1 style="background-color:lightskyblue">エラー文検索</h1>
+    <br>
+    <textarea id="textarea" cols="100" rows="2" placeholder="エラー文を入力してください" maxlength="500"
+        style="margin-left:30px"></textarea>
+    <!-- <input id="text1" value="エラー文を入力してください" type="textfield"> -->
+    <button onclick="buttonPressed()" style="background-color:dodgerblue">検索</button>
+    <hr>
+    <div id="answer" style="margin-left:30px">
+        <p id="sentence"></p>
+        <br>
+        <p id="advice"></p>
+    </div>
+
+    <!-- <a href="error.html">エラー文投稿</a> -->
+
+
+    <!-- <p><a href="register.html">新規登録</a></p>
+    <hr>
+    <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p> -->
+</body>
+
+</html>
