@@ -24,13 +24,19 @@
                 return;
             }
 
-            var sentence = objects[0].error_main;
-            // var detail = objects[0].detail;
-            var advice = objects[0].error_solution;
+            for(var i = 0; i < objects.length; i++){
+                var sentence = objects[i].error_main;
+                document.getElementById('sentence').innerHTML = 'エラー文：' + sentence;
+                var advice = objects[i].error_solution;
+                document.getElementById('advice').innerHTML = '解決策：' + advice;
+            }
+            // var sentence = objects[0].error_main;
+            // // var detail = objects[0].detail;
+            // var advice = objects[0].error_solution;
 
-            document.getElementById('sentence').innerHTML = 'エラー文：' + sentence;
-            // document.getElementById('detail').innerHTML = detail;
-            document.getElementById('advice').innerHTML = '解決策：' + advice;
+            // document.getElementById('sentence').innerHTML = 'エラー文：' + sentence;
+            // // document.getElementById('detail').innerHTML = detail;
+            // document.getElementById('advice').innerHTML = '解決策：' + advice;
 
         }
 
