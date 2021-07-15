@@ -15,7 +15,7 @@
         async function buttonPressed() {
             var errorname = document.getElementById('textarea').value;
 
-            var sql = `select * from Errors where error_main="${errorname}";`;
+            var sql = `select * from Errors where error_main like "%${errorname}%";`;
             var objects = await osql.connect(sql);
             console.log(objects);　//同じのが2個出たときの表記の仕方を考える
 
